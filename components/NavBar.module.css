@@ -1,0 +1,16 @@
+
+.navbar {
+  height: 60px;
+  width: 100%;
+  /* color: tomato; */
+  /* background-color: rgb(133, 226, 226); */
+   background-color: rgb(174, 209, 225);
+   align-items: center;
+}
+
+.home {
+  height: 30px;
+  width: 130px;
+  background-color: rgb(198, 198, 209);
+  border: 2px solid rgb(156, 154, 154);
+}

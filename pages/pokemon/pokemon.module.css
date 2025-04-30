@@ -1,0 +1,39 @@
+.pokemon_page {
+  margin-left: 10%;
+  justify-content: center;
+  /* align-content: center; */
+}
+.pokemon_page_button {
+  margin-top: 5%;
+}
+
+.show_more_pokemon {
+    background-color: rgb(208, 209, 203);
+    /* height: 32px; */
+    margin: 10px;
+    width: 50%;
+    border: 2px solid #121211;
+    border-radius: 4px;
+  }
+
+.show_less_pokemon {
+  background-color: rgb(208, 209, 203);
+    /* margin-left: 20%; */
+    margin: 10px;
+    width: 50%;
+    border: 2px solid #121211;
+    border-radius: 4px;
+  }
+.show_all_pokemon {
+  background-color: rgb(208, 209, 203);
+    /* margin-left: 20%; */
+    margin: 10px;
+    width: 50%;
+    border: 2px solid #121211;
+    border-radius: 4px;
+  }
+
+.pokemon_list {
+  background-color: rgb(232, 235, 185);
+  width: 85%;
+}

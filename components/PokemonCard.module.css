@@ -1,0 +1,24 @@
+.card {
+    width: auto;
+    height: auto;
+    display: inline-flex;
+  }
+.card_image_with_link {
+  height: 200px;
+  width: 200px;
+  margin: 10px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center; 
+  /* background-color: rgb(158, 160, 161); */
+}
+.cardImage {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 8px;
+  }
+.cardLink {
+  
+}
