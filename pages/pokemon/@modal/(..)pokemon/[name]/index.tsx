@@ -10,6 +10,6 @@ export default function PhotoModal({
   // const photo: Photo = photos.find(p => p.id === id)!
 
   return (
-    <div>this is modal page</div>
+    <div>this is modal {name} page</div>
   )
 }

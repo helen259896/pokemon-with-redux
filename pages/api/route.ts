@@ -1,19 +1,29 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { notFound } from 'next/navigation';
+// import { notFound } from 'next/navigation';
 
 // import 'server-only';
-'use server'
+// 'use server';
 
 type Data = {
   name: string;
+  url: string;
 };
 
+// export default function handler(
+//   req: NextApiRequest,
+//   res: NextApiResponse<Data>,
+// ) {
+//   res.status(200).json({ name: "John Doe" });
+// }
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "John Doe" });
+  res.status(200).json({ name: 'Hello from Next.js!' })
+}
+export async function Get() {
+  return new Response("Hello new world Doe");
 }
 
 export async function getPokeMenList(offset:number, limit=30) {
@@ -34,7 +44,8 @@ export async function getPokeMenList(offset:number, limit=30) {
     // notFound();
     return 'not found'
   }
-  const resultMap = results.map((item: any) => ({
+
+  const resultMap = results.map((item: Data) => ({
        name: item.name,
        url: item.url,
        imgAlt: item.name + ' artwork',
@@ -108,7 +119,7 @@ export async function getAllPokeMen() {
     `https://pokeapi.co/api/v2/pokemon?limit=${count}`,
   );
   const allPokemen = (await allResult.json());
-  const pokemenList = allPokemen?.results.map((item: any) => item.name)
+  // const pokemenList = allPokemen?.results.map((item: any) => item.name)
   return allPokemen;
 }
 

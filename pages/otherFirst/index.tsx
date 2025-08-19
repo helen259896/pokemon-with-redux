@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 import Link from 'next/link';
 import {useSelector, useDispatch} from 'react-redux';
 // import {State} from '../components/reducer';
-import {wrapper} from '@/store/store';
+// import {wrapper} from '@/store/store';
 
 // export const getStaticProps = wrapper.getStaticProps(store => async ({previewData}) => {
 //     store.dispatch({
@@ -37,6 +37,7 @@ const OtherFirst: NextPage = ({repo}) => {
             {/* <pre>{JSON.stringify({page}, null, 2)}</pre> */}
             <nav>
                 <button onClick={bump}>bump</button>
+                <div>{message1}</div>
                 <div>
                     <Link href="/otherSecond">Navigate to other second</Link>
                 </div>

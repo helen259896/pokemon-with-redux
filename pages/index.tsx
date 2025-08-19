@@ -1,17 +1,18 @@
 // import Image from "next/image";
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { Geist, Geist_Mono } from "next/font/google";
 // import { useSelector, useDispatch } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 
 import Link from 'next/link';
-import { incrementCounter, getUser, tick, tickUp, tickDown } from '../store/action';
+import { getUser, tickUp, tickDown } from '../store/action';
 // import {pageSlice} from "@/store/numberReducer";
-import {usersSlice} from "@/store/usersSlice";
+// import {usersSlice} from "@/store/usersSlice";
 import {wrapper} from '@/store/store';
 import Users from './user';
 import OtherFirst from "./otherFirst";
 import {fetchUserData} from '@/pages/api/route';
+import {rootSlice} from '@/types';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +30,8 @@ function Home() {
   // console.log('home 0000', users);
   // const dispatch: any = useDispatch();
   const dispatch = useAppDispatch();
-  const counter = useAppSelector((state:any) => {
-    // console.log('home 1ß11', state);
+  const counter = useAppSelector((state:rootSlice) => {
+    console.log('home 1ß11', state);
     return state.numberSlice.anotherCounter;
   });
 
@@ -55,7 +56,7 @@ function Home() {
           </button>
         </div>
         <Users />
-        <OtherFirst />
+        {/* <OtherFirst /> */}
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
       </footer>
@@ -63,11 +64,13 @@ function Home() {
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async ({req, res, ...etc}) => {
+// export const getStaticProps = wrapper.getStaticProps((store) => async ({req, res, ...etc}) => {
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const users = await fetchUserData();
-  // store.dispatch({type: 'UPDATE_USER', payload: users});
-  store.dispatch(getUser(users));
+  store.dispatch({type: 'UPDATE_USER', payload: users});
+  // store.dispatch(getUser(users));
   return {props: {users}}
+  // return {props: {}}
 });
 
 

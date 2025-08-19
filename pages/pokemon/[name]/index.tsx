@@ -1,19 +1,25 @@
-import { useRouter } from 'next/router';
-import {useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+// import { useRouter } from 'next/router';
+// import {useState, useEffect } from 'react';
+// import { useAppDispatch } from '@/hooks/storeHooks';
 import Image from 'next/image';
 
 // import {searchPokeMen} from '../api/route';
-import {pokemonDetail, clearPokemonDetail} from '@/store/action';
+// import {pokemonDetail, clearPokemonDetail} from '@/store/action';
 import {searchPokeMen, fetchUserData} from '@/pages/api/route';
 import { GetServerSideProps } from 'next';
-import {pokemonDetails} from '@/types';
-import NotFound from './not-found';
+import {
+  pokemonDetails,
+  pokemonDetailsType,
+  pokemonDetailsStats,
+  pokemonDetailsAbilities,
+  pokemonDetailsMoves,
+} from '@/types';
+// import NotFound from './not-found';
 import ErrorBoundary from '../error';
 // type NoteIdProps = {
 //   params: { name: string }
 // }
-type name = string;
+
 
 
 
@@ -34,13 +40,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 
 export default function PokemonDetails({
-  pokemon, users
+  pokemon,
 }: {
   pokemon: pokemonDetails,
-  users: any,
 }) {
   const pokemonDetails = pokemon;
-  const dispatch = useAppDispatch();
+  console.log('pokemon page', pokemon);
+  // const dispatch = useAppDispatch();
   
   if (!pokemonDetails) {
     //handle error
@@ -49,11 +55,12 @@ export default function PokemonDetails({
     //   <div><NotFound/></div>
     // );
   } 
+  console.log('pokemonDetails', pokemonDetails);
   const imgUrl = pokemonDetails.sprites.other['official-artwork']?.front_default;
-  const pokemonTypes = pokemonDetails.types.map((type: any) => type.type.name).join(', ');
-  const pokemonStats = pokemonDetails.stats.slice(0, 7).map((stats: any) => stats.stat.name).join(', ')
-  const pokemonAbilities = pokemonDetails.abilities.slice(0, 7).map((ability: any) => ability.ability.name).join(', ');
-  const pokemonMoves = pokemonDetails.moves.slice(0, 7).map((move: any) => move.move.name).join(', ');
+  const pokemonTypes = pokemonDetails.types.map((pokemon: pokemonDetailsType) => pokemon.type.name).join(', ');
+  const pokemonStats = pokemonDetails.stats.slice(0, 7).map((pokemon: pokemonDetailsStats) => pokemon.stat.name).join(', ')
+  const pokemonAbilities = pokemonDetails.abilities.slice(0, 7).map((pokemon: pokemonDetailsAbilities) => pokemon.ability.name).join(', ');
+  const pokemonMoves = pokemonDetails.moves.slice(0, 7).map((pokemon: pokemonDetailsMoves) => pokemon.move.name).join(', ');
   
   // console.log('pokemen page pokemen page pokemen page 1', pokemonDetails);
   return (

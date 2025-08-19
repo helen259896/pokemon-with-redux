@@ -1,25 +1,25 @@
 'use client'
 import React, {useEffect} from 'react';
-import { GetServerSideProps } from 'next';
+// import { GetServerSideProps } from 'next';
 
 import {NextPage} from 'next';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import {pokemonList, clearPokemonList} from '@/store/action';
 // import {State} from '../components/reducer';
-import {wrapper} from '@/store/store';
+// import {wrapper} from '@/store/store';
 import type {Pokemon} from '@/types';
-import {getPokeMenList, getAllPokeMen} from '../api/route';
+import {getPokeMenList} from '../api/route';
 import PokemonList from '@/components/Pokemonlist';
 import s from './pokemon.module.css';
 
 
 // const pokemonOffset = 5;
 
-type Repo = {
-    name: string
-    stargazers_count: number
-  }
+// type Repo = {
+//     name: string
+//     stargazers_count: number
+//   }
 
 // export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ({params}) => {
 //     // console.log('getServerSideProps from other second page', params);

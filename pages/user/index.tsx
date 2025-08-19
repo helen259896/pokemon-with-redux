@@ -1,9 +1,9 @@
 import React from "react";
-import {GetStaticPaths, InferGetStaticPropsType, NextPage} from "next";
+import {InferGetStaticPropsType, NextPage} from "next";
 
-import axios from "axios";
+// import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementCounter, decrementCounter, tick } from "@/store/action";
+import { incrementCounter, decrementCounter } from "@/store/action";
 // import { usersSlice } from "@/store/usersSlice";
 import {wrapper} from '@/store/store';
 import {getUser, bump} from "@/store/action";
@@ -22,21 +22,21 @@ import {getUser, bump} from "@/store/action";
 //       users: null,
 //     }));
 
-interface user {
-    address: Object;
-    company: Object;
-    email: string;
-    id: number;
-    name: string;
-    phone: string;
-    username: string;
-    website: string;
-  }
+// interface user {
+//     address: Object;
+//     company: Object;
+//     email: string;
+//     id: number;
+//     name: string;
+//     phone: string;
+//     username: string;
+//     website: string;
+//   }
 
-interface UserProps {
-    users: user[];
-    foo: string;
-};
+// interface UserProps {
+//     users: user[];
+//     foo: string;
+// };
 
 async  function fetchData() {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -55,10 +55,10 @@ async  function fetchData() {
 const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({}) => {
 //   console.log('here is the user page');
   // console.log('my user is here', props);
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
  
-  const {counter, message, users} = useSelector((state: any) => {
-    console.log('user 2222222 user 2222222 user 2222222',  state);
+  const {counter, message, users} = useSelector((state) => {
+    // console.log('user 2222222 user 2222222 user 2222222',  state);
       return state.usersSlice?.usersSlice
 });
 
