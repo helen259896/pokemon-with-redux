@@ -8,6 +8,7 @@ import {
 	createSlice,
 } from "@reduxjs/toolkit";
 import {INCREMENT_COUNTER, DECREMENT_COUNTER} from './action';
+import {TICKUP, TICKDOWN} from './action';
 
 export interface State {
   // message: string;
@@ -32,10 +33,10 @@ export const numberSlice = (
     //   if (action.payload.page === "init") delete action.payload.page;
     //   return { ...state, ...action.payload };
    
-    case 'tickUp':
+    case 'TICKUP':
       // console.log('TICK 33333');
       return { ...state, anotherCounter:action.payload};
-    case 'tickDown':
+    case 'TICKDOWN':
       // console.log('TICK 33333');
       return { ...state, anotherCounter:action.payload};
     // case DECREMENT_COUNTER:

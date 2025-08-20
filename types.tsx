@@ -1,16 +1,31 @@
-export type rootSlice = {
-    numberSlice: {},
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
+export type Reducer = {
+    numberSlice: {anotherCounter: number},
     pokemonSlice: {},
     usersSlice: {},
   }
 export type pokeman = {
-    pokeman: {
+    pokemon: {
         name: string;
         url: string;
         imgAlt: string;
-        imgUrl?: string;
+        imgUrl?: string | StaticImport | null;
     },
     key: string,
+  }
+
+
+export type basePokemon = {
+    name: string;
+    url: string;
+  }
+
+export type pokemanCardDetail = {
+    name: string;
+    url: string;
+    imgAlt: string;
+    imgUrl?: string;
   }
 
   export type Pokemon = {
@@ -19,6 +34,10 @@ export type pokeman = {
     next: string;
     previous: string | null;
     results: [object];
+  }
+  export type pokemonList = {
+    pokemonlist: pokemanCardDetail[];
+    count: number;
   }
 
   export type pokemonDetails = {
@@ -40,34 +59,38 @@ export type pokeman = {
 
   export type pokemonDetailsType = {
     slot: number,
-    type: {
-      name: string,
-      url: string,
-    },
+    type: basePokemon,
+    // {
+    //   name: string,
+    //   url: string,
+    // },
   }
 
   export type pokemonDetailsStats = {
     base_stat: number,
     effort: number,
-    stat: {
-      name: string,
-      url: string,
-    },
+    stat: basePokemon,
+    // {
+    //   name: string,
+    //   url: string,
+    // },
   }
 
   export type pokemonDetailsAbilities = {
     slot: number,
     is_hidden: boolean,
-    ability: {
-      name: string,
-      url: string,
-    },
+    ability: basePokemon,
+    // {
+    //   name: string,
+    //   url: string,
+    // },
   }
 
    export type pokemonDetailsMoves = {
     version_group_details: [{}],
-    move: {
-      name: string,
-      url: string,
-    },
+    move: basePokemon,
+    // move: {
+    //   name: string,
+    //   url: string,
+    // },
   }

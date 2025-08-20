@@ -44,6 +44,7 @@ const Pokemon: NextPage = () => {
         return state?.pokemonSlice?.offset;
     });
     
+
     useEffect(() => {
         const offset_in_localstorage  = Number(window.localStorage.getItem('offset'));
         // console.log('useEffect useEffect useEffect', offset_in_localstorage);
@@ -63,6 +64,7 @@ const Pokemon: NextPage = () => {
          return () => {
             clearPokemonList();
              } 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
     
     // const {count, results} = useAppSelector(state => {

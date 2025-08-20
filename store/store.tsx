@@ -7,6 +7,7 @@ import { MakeStore, createWrapper, Context } from "next-redux-wrapper";
 import {numberSlice} from './numberSlice';
 import {usersSlice} from './usersSlice';
 import { pokemonSlice } from "./pokemonSlice";
+import {reducer} from '@/types';
 import { useDispatch, useSelector } from 'react-redux'
 
 
@@ -41,6 +42,7 @@ export const makeStore: MakeStore<any> = ({isServer}) => {
 type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore["dispatch"];
+export type RootState = ReturnType< typeof combindReducer>;
 // export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 // export const useAppSelector = useSelector.withTypes<typeof combindReducer>();
 

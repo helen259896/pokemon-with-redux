@@ -1,19 +1,22 @@
 // import type { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse, NextRequest  } from 'next/server';
+// import { NextResponse, NextRequest  } from 'next/server';
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 // import { Readable } from "node:stream";
 // 'use server';
 
 import {comments} from './data';
 type Data = {
   id: number;
-  text: string
+  text: string;
 };
+type Datas = Data[];
 
 
 //support GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS methods
 export  default function handler(
-  req: NextRequest,
-  res: NextResponse<Data>,
+  req: NextApiRequest,
+  res: NextApiResponse<Datas>,
 ) {
     const method = req.method;
     switch(method) {
@@ -33,12 +36,13 @@ export  default function handler(
 }
 
 export  async function GET(
-  req: NextRequest,
-  res: NextResponse<Data>
+  req: NextApiRequest,
+  res: NextApiResponse<Datas>
 ) {
     // return new Response("Hello new world Doe");
     const params = req.query;
-    const searchKey = params?.['search'];
+    const searchKey = params?.['search'] as string;
+     console.log('searchKey', params, searchKey);
     const results = comments.filter(comment => {
       if (searchKey) {
         return comment.text.toLowerCase().includes(searchKey.toLowerCase());
@@ -46,7 +50,7 @@ export  async function GET(
       return true;
     });
     const rcomments = results.length > 0 ? results : comments;
-    console.log('results',  results);
+   
     // console.log('url',  req.url);
     // console.log('url',  req.query);
     // console.log('url',  req.formData);
@@ -56,8 +60,8 @@ export  async function GET(
 }
 
 export async function POST(
-  req: NextRequest,
-  res: NextResponse<Data>
+  req: NextApiRequest,
+  res: NextApiResponse<Datas>
 ) {
   // const {body, headers, method }= req;
   // const { Readable } = require('stream');
@@ -68,9 +72,9 @@ export async function POST(
     console.log('comments',  comment);
     
     addComment(comment as Data);
-    console.log('comments',  comments);
+    // console.log('comments',  comments);
     // res.setHeader('Cache-Control', 'stale-while-revalidate=59');
-    res.headers.set("Content-Type", "text/html");
+    // res.headers.set("Content-Type", "text/html");
     res?.status(202).json(comments)
 
   // res?.status(201).json(newComment)
@@ -84,8 +88,8 @@ export async function POST(
 
 
 export  async function PUT(
-   req: NextRequest,
-   res: NextResponse<Data>
+   req: NextApiRequest,
+   res: NextApiResponse,
 ) {
     // return new Response("Hello new world Doe");
     

@@ -2,17 +2,18 @@
 // import { useState, useEffect } from 'react'
 import { Geist, Geist_Mono } from "next/font/google";
 // import { useSelector, useDispatch } from 'react-redux';
-import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+// import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
+import { useAppSelector } from '@/hooks/storeHooks';
 
 import Link from 'next/link';
-import { getUser, tickUp, tickDown } from '../store/action';
+// import { TICKUP, TICKDOWN } from '../store/action';
 // import {pageSlice} from "@/store/numberReducer";
 // import {usersSlice} from "@/store/usersSlice";
 import {wrapper} from '@/store/store';
 import Users from './user';
 import OtherFirst from "./otherFirst";
 import {fetchUserData} from '@/pages/api/route';
-import {rootSlice} from '@/types';
+import {RootState} from '@/store/store';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +30,8 @@ const geistMono = Geist_Mono({
 function Home() {
   // console.log('home 0000', users);
   // const dispatch: any = useDispatch();
-  const dispatch = useAppDispatch();
-  const counter = useAppSelector((state:rootSlice) => {
+  // const dispatch = useAppDispatch();
+  const counter = useAppSelector((state:RootState) => {
     console.log('home 1ß11', state);
     return state.numberSlice.anotherCounter;
   });
@@ -46,17 +47,18 @@ function Home() {
         <Link href="/otherFirst">Navigate To OtherFirst Page</Link>
         <button onClick={() => {
           console.log('click the tick on home page');
-          dispatch(tickUp(counter))
+          // dispatch(tickUp(counter))
           }}>
           index Increment +
         </button> 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <button onClick={() => dispatch(tickDown(counter))}>
+          {/* <button onClick={() => dispatch(tickDown(counter))}> */}
+          <button >
             index Decrement -
           </button>
         </div>
         <Users />
-        {/* <OtherFirst /> */}
+        <OtherFirst />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
       </footer>

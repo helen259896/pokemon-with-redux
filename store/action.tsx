@@ -2,7 +2,8 @@
 
 export const INCREMENT_COUNTER = "INCREMENT_COUNTER";
 export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
-export const TICK = "TICK";
+export const TICKUP = "TICKUP";
+export const TICKDOWN = "TICKDOWN";
 export const GET_POKEMONLIST = "GET_POKEMONLIST";
 export const CLEAR_POKEMONLIST = "CLEAR_POKEMONLIST";
 export const UPDATE_USER = 'UPDATE_USER';

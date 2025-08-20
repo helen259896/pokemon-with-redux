@@ -5,13 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 // import queryClient from '@/lib/queryClient';
 // import { styled } from '@/stitches.config';
-import {Pokeman} from '@/types';
+import {pokeman} from '@/types';
 import style from './PokemonCard.module.css';
 
 
 
 
-const PokemonCard: FC<Pokeman> = ({pokemon}) => {
+const PokemonCard: FC<pokeman> = ({pokemon}) => {
     // console.log('PokemanCard', pokemon);
     const path = '/pokemon/' + pokemon.name;
   return (
@@ -22,7 +22,7 @@ const PokemonCard: FC<Pokeman> = ({pokemon}) => {
               height={130} 
               alt={pokemon.imgAlt} 
               priority={true} 
-              src={pokemon.imgUrl}
+              src={pokemon.imgUrl || ''}
               className={style.cardImage}
             />
             <Link href={path} className={style.cardLink}>{pokemon.name}</Link>

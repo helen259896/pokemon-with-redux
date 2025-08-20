@@ -9,8 +9,8 @@ type Data = {
 };
 
 export  default function handler(
-  req: NextRequest,
-  res: NextResponse<Data>,
+  req: NextApiRequest,
+  res: NextApiResponse<Data>,
 ) {
     const method = req.method;
     switch(method) {
@@ -43,6 +43,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
   // return res?.status(200).send("This is the testing xxxx response", {
   //   headers: {
   //     // 'Content-Type': 'text/plain',
+  //     'Content-Type': 'text/html',
   //     'Set-Cookie': 'theme=dark',
   //   },
   // });
@@ -53,12 +54,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
   //  cookieStore.set({
   //     'theme': "dark",
   //  });
-  return res?.status(200).send("<h1>This is xxx testing profile</h1>", {
-    headers: {
-      'Content-Type': 'text/html',
-      'Set-Cookie': 'theme=dark',
-    },
-  });
+  return res?.status(200).send("<h1>This is xxx testing profile</h1>");
 }
 
 export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
