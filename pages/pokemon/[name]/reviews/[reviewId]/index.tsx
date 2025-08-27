@@ -10,7 +10,7 @@ const PokemonReview = ({
 }}) => {
   const router = useRouter()
   const {name, reviewId} = router.query;
-  if (reviewId && reviewId > 10) {
+  if (reviewId && reviewId > '10') {
     return (
       <div><NotFound/></div>
     )

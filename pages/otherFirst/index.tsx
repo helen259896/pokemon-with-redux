@@ -1,7 +1,8 @@
 import React from 'react';
 import {NextPage} from 'next';
 import Link from 'next/link';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {useAppSelector} from '@/hooks/storeHooks';
 // import {State} from '../components/reducer';
 // import {wrapper} from '@/store/store';
 
@@ -23,9 +24,10 @@ export const getServerSideProps = ( async () => {
     return {props: {repo}};
 });
 
-const OtherFirst: NextPage = ({repo}) => {
-    console.log('Other Page Other Page Other Page', repo);
-    const {message1} = useSelector(state => {
+const OtherFirst: NextPage = (props) => {
+    console.log('Other Page Other Page Other Page', props);
+    // const {message1} = useSelector(state => {
+    const {message1} = useAppSelector(state => {
         // console.log('Other Page state', state);
        return state.usersSlice;
     });

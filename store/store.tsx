@@ -7,8 +7,8 @@ import { MakeStore, createWrapper, Context } from "next-redux-wrapper";
 import {numberSlice} from './numberSlice';
 import {usersSlice} from './usersSlice';
 import { pokemonSlice } from "./pokemonSlice";
-import {reducer} from '@/types';
-import { useDispatch, useSelector } from 'react-redux'
+// import {reducer} from '@/types';
+// import { useDispatch, useSelector } from 'react-redux'
 
 
 
@@ -24,8 +24,8 @@ export const combindReducer = combineReducers({
 
 // isServer undefined
 
-export const makeStore: MakeStore<any> = ({isServer}) => {
-    const isServerT = typeof window === 'undefined'
+export const makeStore: MakeStore<any> = () => {
+    // const isServerT = typeof window === 'undefined'
     
     // console.log('makeStore', isServerT, isServer);
     // console.log('makeStore 22222222', process);

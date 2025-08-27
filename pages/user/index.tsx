@@ -1,12 +1,16 @@
-import React from "react";
-import {InferGetStaticPropsType, NextPage} from "next";
+import React, {useEffect} from "react";
+import {InferGetStaticPropsType, GetStaticProps} from "next";
+import { useAppSelector, useAppDispatch} from '@/hooks/storeHooks';
+// import {  } from '@/hooks/storeHooks';
+import {fetchUserData} from '@/pages/api/route';
 
 // import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+// import {useDispatch } from "react-redux";
 import { incrementCounter, decrementCounter } from "@/store/action";
+import {users, user} from '@/types';
 // import { usersSlice } from "@/store/usersSlice";
-import {wrapper} from '@/store/store';
-import {getUser, bump} from "@/store/action";
+// import {wrapper} from '@/store/store';
+import { bump} from "@/store/action";
 
 
 
@@ -22,47 +26,59 @@ import {getUser, bump} from "@/store/action";
 //       users: null,
 //     }));
 
-// interface user {
-//     address: Object;
-//     company: Object;
-//     email: string;
-//     id: number;
-//     name: string;
-//     phone: string;
-//     username: string;
-//     website: string;
-//   }
+
 
 // interface UserProps {
 //     users: user[];
 //     foo: string;
 // };
 
-async  function fetchData() {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    if(!response) {
-        throw Error('Response status: fetch data error');
-    }
-    const json = await response.json();
+// async  function fetchData() {
+//     const response = await fetch("https://jsonplaceholder.typicode.com/users");
+//     if(!response) {
+//         throw Error('Response status: fetch data error');
+//     }
+//     const json = await response.json();
     
-    // console.log('fetch data is here', json);
-    return json;
-}
+//     // console.log('fetch data is here', json);
+//     return json;
+// }
   
     
 
 // const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({users}: UserProps) => {
-const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({}) => {
-//   console.log('here is the user page');
-  // console.log('my user is here', props);
-  const dispatch = useDispatch();
- 
-  const {counter, message, users} = useSelector((state) => {
-    // console.log('user 2222222 user 2222222 user 2222222',  state);
-      return state.usersSlice?.usersSlice
-});
+function Users ({users} : users) : React.ReactElement<InferGetStaticPropsType<GetStaticProps>> {
+  // console.log('here is the user page', users);
+  const dispatch = useAppDispatch();
 
-  // console.log('user 2222222 user 2222222 user 2222222',  counter, users);
+  
+  // dispatch({type: 'UPDATE_USER', payload: users});
+
+  useEffect(() => {
+    async function fetchMyUser() {
+      const usersRepList = await fetchUserData();
+      dispatch({type: 'UPDATE_USER', payload: usersRepList});
+      console.log('my user is here in fetch function', usersRepList);
+    }
+
+    if (!users) {
+      fetchMyUser();
+    } 
+
+    }, [users, dispatch])
+    
+  const {counter, message} = useAppSelector((state) => {
+          console.log('user 2222222 user 2222222 user 2222222',  state);
+          return state.usersSlice
+        });
+  const mylist = useAppSelector((state) => {
+    return state.usersSlice.users
+  })
+  const  userList = users || mylist;
+  
+    
+
+  console.log('user 2222222 user 333333333 user 3333333333',  userList);
   
   return (
     <section>
@@ -70,6 +86,7 @@ const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({}) =
         <h1>USERS PAGE</h1>
         <h1>GLOBAL COUNTER: {counter}</h1>
         <div>{message}</div>
+        {/* <div>{users?.length}</div> */}
         <button onClick={() => dispatch(bump('update some message'))}>bump
         </button>
         <div>
@@ -92,7 +109,8 @@ const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({}) =
         
       </header>
       {/* {error && <div>There was an error.</div>} */}
-      {users && (
+      {!userList && (<div>Users is not loaded</div>)}
+      {userList && (
         <table>
           <thead>
             <tr>
@@ -102,8 +120,8 @@ const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({}) =
             </tr>
           </thead>
           <tbody>
-            {users.map((user, key) => (
-              <tr key={key}>
+            {userList.map((user : user, index : number) => (
+              <tr key={index}>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>{user.name}</td>
@@ -116,14 +134,16 @@ const Users : NextPage<InferGetStaticPropsType<typeof getStaticProps>>  = ({}) =
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
-	const users = await fetchData();
-  console.log('getServerSideProps', users);
-  await store.dispatch(getUser(users));
-  return {
-        props: {},
-      };
-  // await store.dispatch(usersSlice.actions.getUser(users));
-});
+//should not dispatch action from getServerSidePorps. Instead pass data as props and initiate dispatch action inside the component
+// export const getServerSideProps = wrapper.getServerSideProps(() => async () => {
+// 	//be able to fetch multiple data here and pass as props
+//   //after app start, then dispatch action to initiate redux store.
+//   const users = await fetchData();
+//   console.log('getServerSideProps', users);
+//   return {
+//         props: {users},
+//       };
+// });
 
+// export default Users;
 export default Users;

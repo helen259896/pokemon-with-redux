@@ -11,7 +11,7 @@ import {
   pokemonDetails,
   pokemonDetailsType,
   pokemonDetailsStats,
-  pokemonDetailsAbilities,
+  // pokemonDetailsAbilities,
   pokemonDetailsMoves,
 } from '@/types';
 // import NotFound from './not-found';
@@ -59,7 +59,7 @@ export default function PokemonDetails({
   const imgUrl = pokemonDetails.sprites.other['official-artwork']?.front_default;
   const pokemonTypes = pokemonDetails.types.map((pokemon: pokemonDetailsType) => pokemon.type.name).join(', ');
   const pokemonStats = pokemonDetails.stats.slice(0, 7).map((pokemon: pokemonDetailsStats) => pokemon.stat.name).join(', ')
-  const pokemonAbilities = pokemonDetails.abilities.slice(0, 7).map((pokemon: pokemonDetailsAbilities) => pokemon.ability.name).join(', ');
+  // const pokemonAbilities = pokemonDetails.abilities.slice(0, 7).map((pokemon: pokemonDetailsAbilities) => pokemon.ability.name).join(', ');
   const pokemonMoves = pokemonDetails.moves.slice(0, 7).map((pokemon: pokemonDetailsMoves) => pokemon.move.name).join(', ');
   
   // console.log('pokemen page pokemen page pokemen page 1', pokemonDetails);
@@ -80,7 +80,7 @@ export default function PokemonDetails({
       <div><strong>Name: </strong>{pokemonDetails.name}</div>
       <div><strong>Type: </strong>{pokemonTypes}</div>
       <div><strong>Stats: </strong>{pokemonStats}</div>
-      <div><strong>Abilities: </strong>{pokemonAbilities}</div>
+      {/* <div><strong>Abilities: </strong>{pokemonAbilities}</div> */}
       <div><strong>Some Moves: </strong>{pokemonMoves}</div>
     </div>
     

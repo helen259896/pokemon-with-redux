@@ -36,10 +36,16 @@ export const decrementCounter = (counter: number) => (dispatch: any) => {
     payload: counter,
   });
 };
-export const tick = () => (dispatch: any) => {
+export const tickUp = (counter: number) => (dispatch: any) => {
   return dispatch({
-    type: TICK,
-    payload: 'was set in other page',
+    type: TICKUP,
+    payload: counter + 1,
+  });
+};
+export const tickDown = (counter: number) => (dispatch: any) => {
+  return dispatch({
+    type: TICKDOWN,
+    payload: counter - 1,
   });
 };
 export const getUser = (users: any) => (dispatch: any) => {

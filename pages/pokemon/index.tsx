@@ -26,8 +26,7 @@ import s from './pokemon.module.css';
 //     // const res = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonOffset}&limit=${pokemonOffset}`);
 //     // const pokemon: Repo = await res.json();
 //     const pokemon = await getPokeMenList(pokemonOffset, pokemonOffset);
-//     // await store.dispatch(getPokemon(pokemon))
-//     // await store.dispatch({type: 'GET_POKEMON', payload: pokemon})
+
 //     return {props: {pokemon}};
 // });
 // export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -76,7 +75,7 @@ const Pokemon: NextPage = () => {
         const pokemon_more = await getPokeMenList(offset, offset) as Pokemon;
         // console.log('getMorePokemon getMorePokemon getMorePokemon', pokemon_more);
         dispatch(pokemonList(pokemon_more))
-        window.localStorage.setItem('offset', offset);
+        window.localStorage.setItem('offset', offset + '');
     }
 
     

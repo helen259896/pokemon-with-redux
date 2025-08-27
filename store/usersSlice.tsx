@@ -45,23 +45,17 @@ export const usersSlice = (
     case UPDATE_USER:
       return { ...state, users:action.payload, counter: action.payload.length};
     case INCREMENT_COUNTER:
-      // console.log('INCREMENT_COUNTER', state);
+      console.log('INCREMENT_COUNTER', state);
       // console.log('INCREMENT_COUNTER', action.payload);
       return { 
         ...state, 
-        usersSlice : { 
-          ...state.usersSlice,
-          counter: action.payload + 1,
-        } 
+        counter: action.payload + 1,
       };
     case DECREMENT_COUNTER:
       // console.log('DECREMENT_COUNTER', action.payload);
       return { 
         ...state,
-        usersSlice: {
-          ...state.usersSlice,
-          counter: action.payload - 1, 
-        },
+        counter: action.payload - 1,
       };
     default:
       return state;

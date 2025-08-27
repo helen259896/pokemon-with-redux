@@ -1,7 +1,7 @@
 'use server'
 import type { NextApiRequest, NextApiResponse } from 'next'
+// import { NextResponse, type NextRequest } from 'next/server'
 // import { redirect } from 'next/navigation';
-// import { headers, cookies } from 'next/headers';
 import {comments} from '../data'; 
 type Data = {
   id: number;
@@ -10,7 +10,7 @@ type Data = {
 
 export  default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse,
 ) {
     const method = req.method;
     switch(method) {
@@ -28,32 +28,12 @@ export  default function handler(
           // res.status(200).json({ name: "John Doe" });
     }
 }
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  // const {id} = req.query;
-  // const {headers} = req;
-  // const auth = req.headers.authorization;
-  // console.log('headers XXXXXXXX', headers);
-  // console.log('headers', auth);
-  // if(parseInt(id) === 22 ){
-  //   // redirect to another page
-  //   res.redirect('/api/comments/route'); 
-  // }
-  // const comment = comments.find((comment) => comment.id === Number(id));
-  // res?.status(200).json(comment ? comment : comments)
-  // return res?.status(200).send("This is the testing xxxx response", {
-  //   headers: {
-  //     // 'Content-Type': 'text/plain',
-  //     'Content-Type': 'text/html',
-  //     'Set-Cookie': 'theme=dark',
-  //   },
-  // });
-  // const cookieStore = await cookies();
+export async function GET(req: NextApiRequest, res:NextApiResponse) {
+  //set cookie inside query response header
+  res.setHeader('y-Custom-Header', 'MyValue');
+  res.setHeader('Set-Cookie', 'theme=light');
+  res.setHeader('Set-Cookie', 'myCookieName=55678');
   
- 
-  // cookies().set('resultpage', '20');
-  //  cookieStore.set({
-  //     'theme': "dark",
-  //  });
   return res?.status(200).send("<h1>This is xxx testing profile</h1>");
 }
 

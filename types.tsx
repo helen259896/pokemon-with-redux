@@ -70,27 +70,40 @@ export type pokemanCardDetail = {
     base_stat: number,
     effort: number,
     stat: basePokemon,
-    // {
-    //   name: string,
-    //   url: string,
-    // },
   }
 
   export type pokemonDetailsAbilities = {
     slot: number,
     is_hidden: boolean,
     ability: basePokemon,
-    // {
-    //   name: string,
-    //   url: string,
-    // },
   }
 
    export type pokemonDetailsMoves = {
     version_group_details: [{}],
     move: basePokemon,
-    // move: {
-    //   name: string,
-    //   url: string,
-    // },
   }
+
+   export type user = {
+    id: string,
+    name: string,
+    username: string,
+    email: string,
+    address: {
+      street: string,
+      suite: string,
+      city: string,
+      zipcode: string,
+      geo: {},
+    },
+    phone: string,
+    website: string,
+    company: {
+      name: string,
+      catchPhrase: string,
+      bs: string,
+    },
+  }
+
+  export type users = {
+    users: user[],
+  };
