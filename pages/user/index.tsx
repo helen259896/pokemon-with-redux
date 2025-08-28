@@ -74,7 +74,7 @@ function Users ({users} : users) : React.ReactElement<InferGetStaticPropsType<Ge
   const mylist = useAppSelector((state) => {
     return state.usersSlice.users
   })
-  const  userList = users || mylist;
+  const  userList = Array.from(users || mylist);
   
     
 
@@ -109,8 +109,7 @@ function Users ({users} : users) : React.ReactElement<InferGetStaticPropsType<Ge
         
       </header>
       {/* {error && <div>There was an error.</div>} */}
-      {!userList && (<div>Users is not loaded</div>)}
-      {userList && (
+      {!userList ? (<div>Users is not loaded</div>) : (
         <table>
           <thead>
             <tr>
