@@ -68,7 +68,7 @@ function Users ({users} : users) : React.ReactElement<InferGetStaticPropsType<Ge
     }, [users, dispatch])
     
   const {counter, message} = useAppSelector((state) => {
-          console.log('user 2222222 user 2222222 user 2222222',  state);
+          // console.log('user 2222222 user 2222222 user 2222222',  state);
           return state.usersSlice
         });
   const mylist = useAppSelector((state) => {
@@ -78,7 +78,7 @@ function Users ({users} : users) : React.ReactElement<InferGetStaticPropsType<Ge
   
     
 
-  console.log('user 2222222 user 333333333 user 3333333333',  userList);
+  // console.log('user 2222222 user 333333333 user 3333333333',  userList);
   
   return (
     <section>
